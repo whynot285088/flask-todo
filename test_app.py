@@ -26,3 +26,11 @@ def test_title_required():
     r = client().post("/todos", json={})
     assert r.status_code == 400
     assert r.status_code == 400
+
+def test_delete():
+    c = client()
+    r = c.post("/todos", json={"title": "임시"})
+    tid = r.get_json()["id"]
+
+    assert c.delete(f"/todos/{tid}").status_code == 204
+    assert c.delete(f"/todos/{tid}").status_code == 404

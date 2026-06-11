@@ -25,3 +25,4 @@ def test_create_and_list():
 def test_title_required():
     r = client().post("/todos", json={})
     assert r.status_code == 400
+    assert r.status_code == 400
